@@ -1,0 +1,9 @@
+Update logout.php di kedua file agar redirect ke logout.php yang akan destroy session dan kemudian redirect ke login.php
+
+File: berandaAdmin.php
+Baris 386: ubah `window.location.href = 'login.php';` menjadi `window.location.href = 'logout.php';`
+
+File: manage_orders.php
+Baris ~148: ubah `window.location.href = 'login.php';` menjadi `window.location.href = 'logout.php';`
+
+Ini akan memastikan session dihancurkan sebelum redirect ke login.

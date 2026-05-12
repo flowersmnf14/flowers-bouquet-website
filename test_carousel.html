@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #fffacd 100%);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #FF1493;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(255, 20, 147, 0.2);
+            background: white;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel {
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 420px;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 0;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .carousel-item img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 16px rgba(255, 20, 147, 0.2);
+        }
+
+        .carousel-item h3 {
+            font-size: 1.5rem;
+            color: #FF1493;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-item p {
+            font-size: 1.2rem;
+            color: #FF8C00;
+            font-weight: bold;
+        }
+
+        .carousel-btn {
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            color: white;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 12px rgba(255, 20, 147, 0.3);
+        }
+
+        .carousel-btn:hover {
+            background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+            transform: scale(1.15);
+            box-shadow: 0 8px 16px rgba(255, 20, 147, 0.4);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FFD700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+        }
+
+        .dot.active {
+            background-color: #FF1493;
+            transform: scale(1.3);
+        }
+
+        .info {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info h3 {
+            color: #FF1493;
+            margin-bottom: 1rem;
+        }
+
+        .info ul {
+            list-style-position: inside;
+            color: #333;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎠 Test Carousel Produk Unggulan</h1>
+
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+            <div class="carousel-wrapper">
+                <div class="carousel">
+                    <div class="carousel-item active">
+                        <img src="https://via.placeholder.com/250/FF69B4/FFFFFF?text=Produk+1" alt="Produk 1">
+                        <h3>Bunga Mawar Merah</h3>
+                        <p>Rp 150.000</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/250/FFD700/000000?text=Produk+2" alt="Produk 2">
+                        <h3>Amplop Uang Premium</h3>
+                        <p>Rp 50.000</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/250/FF1493/FFFFFF?text=Produk+3" alt="Produk 3">
+                        <h3>Boneka Teddy Bear</h3>
+                        <p>Rp 75.000</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://via.placeholder.com/250/FFFF00/000000?text=Produk+4" alt="Produk 4">
+                        <h3>Kue Tart Coklat</h3>
+                        <p>Rp 200.000</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+        </div>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+
+        <div class="info">
+            <h3>📝 Cara Menggunakan:</h3>
+            <ul>
+                <li>🔘 Klik tombol <strong>❮</strong> atau <strong>❯</strong> untuk slide produk</li>
+                <li>⭐ Klik <strong>dot indicator</strong> untuk langsung ke produk tertentu</li>
+                <li>⏱️ Carousel auto-slide setiap 5 detik</li>
+                <li>✨ Klik produk untuk melihat efek hover</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.dot');
+        let autoSlideInterval;
+
+        function showSlide(n) {
+            if (!carouselItems || carouselItems.length === 0) return;
+            
+            if (n >= carouselItems.length) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = carouselItems.length - 1;
+            } else {
+                currentSlide = n;
+            }
+
+            carouselItems.forEach(item => item.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            if (carouselItems[currentSlide]) {
+                carouselItems[currentSlide].classList.add('active');
+            }
+            if (dots[currentSlide]) {
+                dots[currentSlide].classList.add('active');
+            }
+        }
+
+        function autoSlide() {
+            autoSlideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % carouselItems.length;
+                showSlide(currentSlide);
+            }, 5000);
+        }
+
+        function nextSlide() {
+            clearInterval(autoSlideInterval);
+            currentSlide = (currentSlide + 1) % carouselItems.length;
+            showSlide(currentSlide);
+            autoSlide();
+        }
+
+        function prevSlide() {
+            clearInterval(autoSlideInterval);
+            currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+            showSlide(currentSlide);
+            autoSlide();
+        }
+
+        function currentSlide(n) {
+            clearInterval(autoSlideInterval);
+            currentSlide = n;
+            showSlide(currentSlide);
+            autoSlide();
+        }
+
+        // Initialize
+        showSlide(currentSlide);
+        autoSlide();
+    </script>
+</body>
+</html>
